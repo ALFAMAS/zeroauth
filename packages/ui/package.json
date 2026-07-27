@@ -97,7 +97,7 @@
     "vitest": "^4.1.9"
   },
   "optionalDependencies": {
-    "@parcel/watcher-linux-x64-glibc": "2.5.6",
+    "@parcel/watcher-linux-x64-glibc": "2.6.0",
     "@swc/core-linux-x64-gnu": "1.15.46",
     "@next/swc-win32-x64-msvc": "16.2.10",
     "@next/swc-wasm-nodejs": "16.2.10",
