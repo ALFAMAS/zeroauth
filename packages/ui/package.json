@@ -27,7 +27,7 @@
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",
     "@next/swc-wasm-nodejs": "16.2.10",
-    "@next/swc-wasm-web": "16.2.10",
+    "@next/swc-wasm-web": "16.2.12",
     "@number-flow/react": "^0.6.1",
     "@parcel/watcher-win32-x64": "^2.5.6",
     "@qwik.dev/partytown": "^0.14.0",
@@ -101,7 +101,7 @@
     "@swc/core-linux-x64-gnu": "1.15.46",
     "@next/swc-win32-x64-msvc": "16.2.10",
     "@next/swc-wasm-nodejs": "16.2.10",
-    "@next/swc-wasm-web": "16.2.10",
+    "@next/swc-wasm-web": "16.2.12",
     "@parcel/watcher-win32-x64": "^2.5.6",
     "@swc/core-win32-x64-msvc": "^1.15.40"
   }
