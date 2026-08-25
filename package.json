@@ -144,12 +144,13 @@
     "semantic-release": "^25.0.5",
     "speedscope": "1.25.0",
     "testcontainers": "^12.0.4",
-    "typescript": "^7.0.2",
+    "typescript": "6.0.3",
     "vitest": "^4.1.9"
   },
   "overrides": {
-    "postcss": "^8.5.10",
-    "undici": "^7.28.0"
+    "postcss": "^8.5.18",
+    "undici": "^7.29.0",
+    "ip-address": "^10.3.1"
   },
   "optionalDependencies": {
     "@aws-sdk/client-secrets-manager": "^3.848.0",
@@ -158,9 +159,9 @@
     "@parcel/watcher-darwin-x64": "2.5.6",
     "@parcel/watcher-linux-x64-glibc": "2.5.6",
     "@swc/core-linux-x64-gnu": "1.15.46",
-    "@next/swc-win32-x64-msvc": "16.2.10",
-    "@next/swc-wasm-nodejs": "16.2.10",
-    "@next/swc-wasm-web": "16.2.10",
+    "@next/swc-win32-x64-msvc": "16.2.11",
+    "@next/swc-wasm-nodejs": "16.2.11",
+    "@next/swc-wasm-web": "16.2.11",
     "@parcel/watcher-win32-x64": "^2.5.6",
     "@swc/core-win32-x64-msvc": "^1.15.43",
     "@rolldown/binding-darwin-arm64": "1.2.0",

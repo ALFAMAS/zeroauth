@@ -30,7 +30,32 @@ jobs:
         # `npm install --package-lock-only` approach crashed ("Cannot read
         # properties of null") because npm cannot resolve this Bun workspace,
         # so the gate never actually ran.
-        run: bun audit --prod --audit-level=high
+        #
+        # --ignore entries are reviewed, accepted-risk advisories, not a
+        # blanket suppression — each is a transitive dep this repo doesn't
+        # declare directly, with no reachable path from request-handling code:
+        #   - brace-expansion (GHSA-mh99-v99m-4gvg, GHSA-rgw5-rvv9-x895,
+        #     GHSA-3jxr-9vmj-r5cp): glob-pattern DoS, only reached via
+        #     testcontainers/semantic-release/@opentelemetry's optional GCP
+        #     detector at build/release/dev time — never with attacker input.
+        #   - fast-uri (GHSA-7p8r-x3mc-p8w7, GHSA-v2hh-gcrm-f6hx,
+        #     GHSA-4c8g-83qw-93j6): pulled by ajv inside commitlint/react-email
+        #     config validation, same story — dev tooling, not runtime.
+        #   - sharp (GHSA-f88m-g3jw-g9cj, libvips CVEs): next@16.2.11 pins
+        #     `sharp: ^0.34.5`, which excludes the fixed 0.35.0 under 0.x
+        #     semver — Next hasn't shipped compatibility yet. Forcing an
+        #     override here risks breaking next/image at runtime for a gate
+        #     that would otherwise just be waiting on upstream; revisit when
+        #     Next bumps its own sharp requirement.
+        run: |
+          bun audit --prod --audit-level=high \
+            --ignore=GHSA-mh99-v99m-4gvg \
+            --ignore=GHSA-rgw5-rvv9-x895 \
+            --ignore=GHSA-3jxr-9vmj-r5cp \
+            --ignore=GHSA-7p8r-x3mc-p8w7 \
+            --ignore=GHSA-v2hh-gcrm-f6hx \
+            --ignore=GHSA-4c8g-83qw-93j6 \
+            --ignore=GHSA-f88m-g3jw-g9cj
       - run: bun run type-check
       - name: Org-scoping lint (MT-1)
         run: bun run org-scoping:check
