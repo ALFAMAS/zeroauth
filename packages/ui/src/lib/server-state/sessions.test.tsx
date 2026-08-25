@@ -18,8 +18,10 @@ const session = {
   userId: "user_1",
   userEmail: "user@example.com",
   isActive: true,
-  createdAt: "2026-07-01T00:00:00Z",
-  expiresAt: "2026-08-01T00:00:00Z",
+  createdAt: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString(),
+  // isActiveSession() (columns.tsx) hides the Revoke action once expiresAt is
+  // in the past, so this must stay relative to "now" rather than a fixed date.
+  expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
 };
 
 function renderWithQueryClient(ui: React.ReactElement) {

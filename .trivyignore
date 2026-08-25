@@ -1,0 +1,11 @@
+# Reviewed, accepted-risk advisories — not a blanket suppression. Each is a
+# transitive dependency this repo doesn't declare directly, with no reachable
+# path from request-handling code. Mirrors the --ignore list on the
+# equivalent `bun audit` gate in .github/workflows/ci.yml — keep both in sync.
+#
+# brace-expansion: glob-pattern DoS, only reached via
+# testcontainers/semantic-release/@opentelemetry's optional GCP detector at
+# build/release/dev time — never with attacker input.
+CVE-2026-13149
+CVE-2026-14257
+CVE-2026-69152

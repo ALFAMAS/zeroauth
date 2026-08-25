@@ -1,7 +1,7 @@
 /**
  * Auto-generate the `@zerotrust/client` TypeScript SDK from the OpenAPI spec.
  *
- *   bun run sdk:generate          # or: npx tsx scripts/generate-sdk.ts
+ *   bun run sdk:generate
  *
  * Reads `src/api/openapi.json` and emits a single, dependency-free
  * `packages/client/src/index.ts` containing:

@@ -14,17 +14,16 @@
       "skipFiles": ["<node_internals>/**"]
     },
     {
-      "name": "Debug ZeroAuth (tsx)",
+      "name": "Debug ZeroAuth (src/index.ts)",
       "type": "node",
       "request": "launch",
-      "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/tsx",
-      "program": "${workspaceFolder}/src/index.ts",
+      "runtimeExecutable": "bun",
+      "runtimeArgs": ["--inspect", "src/index.ts"],
       "cwd": "${workspaceFolder}",
       "envFile": "${workspaceFolder}/.env",
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
-      "skipFiles": ["<node_internals>/**"],
-      "outFiles": ["${workspaceFolder}/dist/**/*.js"]
+      "skipFiles": ["<node_internals>/**"]
     },
     {
       "name": "Debug current test file",

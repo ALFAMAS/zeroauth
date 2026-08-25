@@ -2,7 +2,7 @@
 # Build with: docker build -t zerotrust:latest .
 # Build with Node runtime: docker build -t zerotrust:node --build-arg RUNTIME=node .
 
-ARG BUN_VERSION=1.3.14
+ARG BUN_VERSION=1.4.0
 ARG NODE_VERSION=20-alpine
 ARG RUNTIME=bun
 

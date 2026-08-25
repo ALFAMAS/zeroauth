@@ -1,4 +1,4 @@
-import { nanoid } from "nanoid";
+import { randomToken } from "../../src/shared/randomToken.js";
 
 export const OAUTH_STATE_TTL_SECS = 300;
 
@@ -58,7 +58,7 @@ export async function generateOAuthState(
   codeChallenge?: string,
   codeVerifier?: string
 ): Promise<string> {
-  const state = nanoid();
+  const state = randomToken();
   const store = JSON.stringify({
     ts: Date.now(),
     codeChallenge: codeChallenge || null,

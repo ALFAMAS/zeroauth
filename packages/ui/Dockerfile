@@ -2,7 +2,7 @@
 # Build: docker build -f packages/ui/Dockerfile -t zerotrust-ui:latest .
 # Run:   docker run -p 3001:3000 -e NEXT_PUBLIC_ZEROTRUST_URL=http://host.docker.internal:3000 zerotrust-ui:latest
 
-ARG BUN_VERSION=1.3.14
+ARG BUN_VERSION=1.4.0
 ARG NODE_VERSION=20-alpine
 
 # ─── Stage 1: Builder ────────────────────────────────────────────────────────
