@@ -1,11 +1,11 @@
 import * as nodeCrypto from "node:crypto";
 import { and, eq, sql } from "drizzle-orm";
 import { Hono } from "hono";
-import { nanoid } from "nanoid";
 import { getConfig } from "../../src/config/index.js";
 import { getDb } from "../../src/db/index.js";
 import { oauthExchangeCodesTable, usersTable } from "../../src/db/schema/index.js";
 import { getLogger } from "../../src/logger/index.js";
+import { randomToken } from "../../src/shared/randomToken.js";
 import { setRefreshTokenCookie } from "../../src/shared/authCookies.js";
 import { authMiddleware } from "../../src/middleware/auth.js";
 import { sensitiveReverification } from "../../src/middleware/continuousVerification.js";
@@ -199,7 +199,7 @@ router.get("/oauth/:provider/callback", rateLimit({ points: 20, windowSecs: 60 }
 
     const { body, sessionId, refreshTokenPlain } = await issueAuthenticatedSession(c, user);
 
-    const exchangeCode = nanoid(32);
+    const exchangeCode = randomToken(32);
     const EXCHANGE_CODE_TTL_SECS = 60;
     await db.insert(oauthExchangeCodesTable).values({
       code: exchangeCode,

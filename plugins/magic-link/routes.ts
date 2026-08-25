@@ -2,7 +2,6 @@ import crypto from "node:crypto";
 import { eq } from "drizzle-orm";
 import type { Context } from "hono";
 import { Hono } from "hono";
-import { nanoid } from "nanoid";
 import { getConfig } from "../../src/config/index.js";
 import { getDb } from "../../src/db/index.js";
 import {
@@ -19,6 +18,7 @@ import { sendMagicLink, verifyMagicLink } from "../../src/services/auth/magicLin
 import { TokenService } from "../../src/services/auth/token.service.js";
 import { getClientIp } from "../../src/shared/clientIp.js";
 import { internalError } from "../../src/shared/httpErrors.js";
+import { randomToken } from "../../src/shared/randomToken.js";
 import { appRedirectUrl, safeRelativeRedirect } from "../../src/shared/safeRedirect.js";
 import type { HonoEnv } from "../../src/shared/types.js";
 
@@ -136,7 +136,7 @@ router.get("/verify", async (c) => {
 
     const appUrl = settings.appUrl || "http://localhost:3000";
     const safePath = safeRelativeRedirect(redirect, "/auth/callback");
-    const exchangeCode = nanoid(32);
+    const exchangeCode = randomToken(32);
     const EXCHANGE_CODE_TTL_SECS = 60;
     await getDb()
       .insert(oauthExchangeCodesTable)

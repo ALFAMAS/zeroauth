@@ -7,8 +7,8 @@
  * and are looked up server-side.
  */
 
-import { nanoid } from "nanoid";
 import { decrypt, encrypt, PasetoError } from "../../crypto/paseto-v4";
+import { randomToken } from "../../shared/randomToken";
 import type { TokenPayload, zerotrustConfig } from "../../shared/types";
 import { DEFAULT_ACCESS_TOKEN_TTL } from "../../shared/types";
 
@@ -36,7 +36,7 @@ export class TokenService {
     const now = Math.floor(Date.now() / 1000);
     const full: TokenPayload = {
       ...payload,
-      jti: nanoid(),
+      jti: randomToken(),
       iat: now,
       exp: now + ttl,
     };
