@@ -7,7 +7,7 @@
   ],
   "scripts": {
     "postinstall": "node scripts/postinstall.js",
-    "dev": "bunx concurrently --kill-others-on-fail -n API,UI -c cyan,magenta \"bun --watch src/api/server.ts\" \"bun run --cwd packages/ui dev\"",
+    "dev": "bun run --parallel dev:api dev:ui",
     "dev:api": "bun --watch src/api/server.ts",
     "dev:ui": "bun run --cwd packages/ui dev",
     "build": "node ./node_modules/typescript/lib/tsc.js",
@@ -134,7 +134,6 @@
     "@types/web-push": "^3.6.4",
     "@vitest/coverage-v8": "^4.1.9",
     "@vitest/ui": "^4.1.9",
-    "concurrently": "^10.0.3",
     "conventional-changelog-conventionalcommits": "^10.2.0",
     "drizzle-kit": "0.31.10",
     "esbuild": "^0.28.1",
