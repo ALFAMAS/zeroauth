@@ -25,10 +25,22 @@ Command.displayName = CommandPrimitive.displayName;
 interface CommandDialogProps extends React.ComponentPropsWithoutRef<typeof DialogPrimitive.Root> {
   /** Accessible name for the dialog (screen-reader only — no visible title chrome). */
   label?: string;
+  /**
+   * Accessible name for the search combobox. cmdk labels its `<input>` via a
+   * hidden `<label>` referenced through `aria-labelledby`, which takes
+   * precedence over any `aria-label` passed directly to `CommandInput` — so
+   * this is the only prop that actually names the input for assistive tech.
+   */
+  inputLabel?: string;
 }
 
 /** Modal command palette shell: Radix Dialog + cmdk, positioned near the top of the viewport. */
-function CommandDialog({ children, label = "Command palette", ...props }: CommandDialogProps) {
+function CommandDialog({
+  children,
+  label = "Command palette",
+  inputLabel,
+  ...props
+}: CommandDialogProps) {
   return (
     <DialogPrimitive.Root {...props}>
       <DialogPrimitive.Portal>
@@ -38,7 +50,9 @@ function CommandDialog({ children, label = "Command palette", ...props }: Comman
           className="fixed inset-x-0 top-[15vh] z-[100] mx-auto w-[calc(100%-2rem)] max-w-lg overflow-hidden rounded-xl border border-border bg-popover shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 motion-reduce:animate-none"
         >
           <DialogPrimitive.Title className="sr-only">{label}</DialogPrimitive.Title>
-          <Command shouldFilter>{children}</Command>
+          <Command shouldFilter label={inputLabel}>
+            {children}
+          </Command>
         </DialogPrimitive.Content>
       </DialogPrimitive.Portal>
     </DialogPrimitive.Root>

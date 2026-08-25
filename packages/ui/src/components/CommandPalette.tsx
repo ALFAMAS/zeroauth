@@ -152,8 +152,8 @@ export function CommandPalette() {
   }
 
   return (
-    <CommandDialog open={open} onOpenChange={setOpen} label="Command palette">
-      <CommandInput placeholder="Search pages, settings…" aria-label="Search" />
+    <CommandDialog open={open} onOpenChange={setOpen} label="Command palette" inputLabel="Search">
+      <CommandInput placeholder="Search pages, settings…" />
       <CommandList>
         <CommandEmpty>No results found.</CommandEmpty>
         {GROUPS.map((group) => (
